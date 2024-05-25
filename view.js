@@ -34,7 +34,7 @@ timeButton.addEventListener('click', () =>{
     sendIntervalValue(parseInt(timeValue.value));
 });
 
-Plotly.plot('lightPlot', [{
+Plotly.newPlot('lightPlot', [{
     x: [],
     y: [],
     mode: 'lines+markers', 
@@ -42,7 +42,7 @@ Plotly.plot('lightPlot', [{
     line: {width: 4}
 }]);
 
-Plotly.plot('magPlot', [{
+Plotly.newPlot('magPlot', [{
     x: [],
     y: [],
     mode: 'lines+markers', 
