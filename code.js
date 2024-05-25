@@ -67,7 +67,7 @@ function sendSensors(sensors){
 
 function sendIntervalValue(t){
     if(connection){
-        connection.write("stopSending("+t+")\n");
+        connection.write("changeIntervalTime("+t+")\n");
     } else {
         onError("Not connected.")
     }
