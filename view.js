@@ -20,7 +20,7 @@ function updateView(data){
 
 function updateSensors(sensors){
     for(i in sensors){
-        document.querySelector("input[name='"+i+"']").value = sensors[i];
+        document.querySelector("input[name='"+i+"']").checked = sensors[i];
     }
 }
 
