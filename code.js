@@ -57,7 +57,7 @@ function stop(){
     }
 }
 
-function selectSensors(sensors){
+function sendSensors(sensors){
     if(connection){
         connection.write("setup("+JSON.stringify(sensors)+")\n");
     } else {
@@ -65,7 +65,7 @@ function selectSensors(sensors){
     }
 }
 
-function selectIntervalTime(t){
+function sendIntervalValue(t){
     if(connection){
         connection.write("stopSending("+t+")\n");
     } else {

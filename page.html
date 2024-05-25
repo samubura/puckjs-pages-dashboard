@@ -4,23 +4,29 @@
  <body>
   <script src="https://www.espruino.com/js/uart.js"></script>
   <script src="code.js"></script> 
-  <script src="view.js"></script>
   
   <button onclick="connectDevice();">Connect</button>
   <button onclick="start();">Start</button>
   <button onclick="stop();">Stop</button>
 
-  <form>
-    <input type="number" label="intervalTime"> Update time </input>
-    <input type="checkbox" label="mag">Magnetometer</input>
-    <input type="checkbox" label="accel">Accelerometer</input>
-    <input type="checkbox" label="temp">Temperature</input>
-    <input type="checkbox" label="light">Light</input>
-    <button type="submit" onclick="test()">Send!</button>
+  
+  
+  <div>
+    <input type="number" name="intervalTime"></input>
+    <button id="time">Update Time</button>
+  </div>
+
+  <form id="settings">
+    <input type="checkbox" name="mag">Magnetometer</input>
+    <input type="checkbox" name="accel">Accelerometer</input>
+    <input type="checkbox" name="temp">Temperature</input>
+    <input type="checkbox" name="light">Light</input>
+    <button type="submit" onclick="sendSettings">Send!</button>
   </form>
   
 
   <p id="data">No data yet.</p>
 
+  <script src="view.js"></script>
  </body>
 </html>
