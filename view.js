@@ -12,7 +12,8 @@ function onError(msg){
 
 function updateView(data){
     document.getElementById("data").innerHTML = JSON.stringify(data);
-    let time = new Date(Math.floor(data.time)).toTimeString().split(' ')[0] + ":" + x.getMilliseconds()
+    let date = new Date(Math.floor(data.time))
+    let time = date.toTimeString().split(' ')[0] + ":" + date.getMilliseconds()
     let light = data.light*100;
     console.log(time)
     console.log(light);
