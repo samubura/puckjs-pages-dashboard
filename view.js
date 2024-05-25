@@ -24,7 +24,7 @@ function updateSensors(sensors){
     }
 }
 
-function updateGraphs(){
+function updateGraphs(data){
     document.getElementById("data").innerHTML = JSON.stringify(data);
     let date = new Date(Math.floor(data.time))
     let time = date.toTimeString().split(' ')[0] + ":" + date.getMilliseconds()
