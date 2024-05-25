@@ -12,16 +12,16 @@
   
   
   <div>
-    <input type="number" name="intervalTime"></input>
-    <button id="time">Update Time</button>
+    <input id="time" type="number" name="intervalTime"></input>
+    <button id="timeBtn">Update Time</button>
   </div>
 
   <form id="settings">
-    <input type="checkbox" name="mag">Magnetometer</input>
-    <input type="checkbox" name="accel">Accelerometer</input>
-    <input type="checkbox" name="temp">Temperature</input>
-    <input type="checkbox" name="light">Light</input>
-    <button type="submit" onclick="sendSettings">Send!</button>
+    <input type="checkbox" name="mag" value="true">Magnetometer</input>
+    <input type="checkbox" name="accel" value="true">Accelerometer</input>
+    <input type="checkbox" name="temp" value="true">Temperature</input>
+    <input type="checkbox" name="light" value="true">Light</input>
+    <button type="submit">Send!</button>
   </form>
   
 
