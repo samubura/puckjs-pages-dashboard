@@ -1,7 +1,4 @@
-# A Hello World Example for Puck.js and Web Bluetooth
-This is a template repository for an HTML page that connects with Puck.js using Web Bluetooth.
-The page shows two buttons to turn the green LED on and off.
+# A Dashboard Puck.js and Web Bluetooth
+This is a small project showcasing a dashboard built with HTML, JavaScript and CSS to establish bi-directional live communication with Puck.js over Web Bluetooth and plot sensors data.
 
-[Try me!](https://samubura.github.io/puckjs-pages-hello-world/page.html)
-
-Lezione fatta!
+The code in the folder `puck` needs to be deployed on the sensor to read data.
