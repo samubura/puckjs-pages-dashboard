@@ -59,7 +59,7 @@ function stop(){
 
 function sendSensors(sensors){
     if(connection){
-        connection.write("setup("+JSON.stringify(sensors)+")\n");
+        connection.write("setup('"+JSON.stringify(sensors)+"')'\n");
     } else {
         onError("Not connected.")
     }
