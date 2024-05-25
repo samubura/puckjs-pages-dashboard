@@ -43,24 +43,24 @@ function connectDevice() {
 
 function start(){
     if(connection){
-        UART.write("startSending()\n");
+        connection.write("startSending()\n");
     }
 }
 
 function stop(){
     if(connection){
-        UART.write("stopSending()\n");
+        connection.write("stopSending()\n");
     }
 }
 
 function selectSensors(sensors){
     if(connection){
-        UART.write("setup("+JSON.stringify(sensors)+")\n");
+        connection.write("setup("+JSON.stringify(sensors)+")\n");
     }
 }
 
 function selectIntervalTime(t){
     if(connection){
-        UART.write("stopSending("+t+")\n");
+        connection.write("stopSending("+t+")\n");
     }
 }
