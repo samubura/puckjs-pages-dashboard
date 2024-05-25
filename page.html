@@ -10,6 +10,16 @@
   <button onclick="start();">Start</button>
   <button onclick="stop();">Stop</button>
 
+  <form>
+    <input type="number" label="intervalTime"> Update time </input>
+    <input type="checkbox" label="mag">Magnetometer</input>
+    <input type="checkbox" label="accel">Accelerometer</input>
+    <input type="checkbox" label="temp">Temperature</input>
+    <input type="checkbox" label="light">Light</input>
+    <button type="submit" onclick="test()">Send!</button>
+  </form>
+  
+
   <p id="data">No data yet.</p>
 
  </body>

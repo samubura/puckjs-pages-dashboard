@@ -17,7 +17,7 @@ function onLine(line) {
 function connectDevice() {
     UART.connect(function(c) {
         if (!c) {
-            onError();
+            onError("Error when connecting! Try again");
             return;
         }
         connection = c;
@@ -44,23 +44,31 @@ function connectDevice() {
 function start(){
     if(connection){
         connection.write("startSending()\n");
+    } else {
+        onError("Not connected.")
     }
 }
 
 function stop(){
     if(connection){
         connection.write("stopSending()\n");
+    } else {
+        onError("Not connected.")
     }
 }
 
 function selectSensors(sensors){
     if(connection){
         connection.write("setup("+JSON.stringify(sensors)+")\n");
+    } else {
+        onError("Not connected.")
     }
 }
 
 function selectIntervalTime(t){
     if(connection){
         connection.write("stopSending("+t+")\n");
+    } else {
+        onError("Not connected.")
     }
 }

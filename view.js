@@ -6,10 +6,14 @@ function onDisconnected(){
     alert("Disconnected!");
 }
 
-function onError(){
-    alert("Error when connecting, try again!");
+function onError(msg){
+    alert(msg);
 }
 
 function updateView(data){
     document.getElementById("data").innerHTML = JSON.stringify(data);
+}
+
+function test(){
+    console.log("Test!");
 }
