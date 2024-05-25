@@ -15,7 +15,7 @@ function onLine(line) {
 
 //creates the connection and register the handler for received data
 function connectDevice() {
-    Puck.connect(function(c) {
+    UART.connect(function(c) {
         if (!c) {
             alert("Couldn't connect!");
             return;
@@ -37,7 +37,7 @@ function connectDevice() {
 
 function start(){
     if(connection){
-        Puck.write("startSending()");
+        UART.write("startSending()");
     }
 }
 
