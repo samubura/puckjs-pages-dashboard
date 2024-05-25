@@ -11,7 +11,7 @@ let sensors = {
 
 //setup the sensors
 function setup(s) {
-  sensors = s;
+  sensors = JSON.parse(s);
   if(sensors.mag){
     Puck.magOn();
   }
@@ -50,7 +50,7 @@ function readData(){
 //return data through bluetooth
 function sendData() {
   let data = readData();
-  Bluetooth.println(JSON.stringify(data, null, 2));
+  Bluetooth.println(JSON.stringify(data));
 }
 
 //start reading and sending
@@ -67,4 +67,6 @@ function stopSending() {
     intervalId = undefined;
   }
 }
+
+NRF.on('disconnect', () => stopSending());
 

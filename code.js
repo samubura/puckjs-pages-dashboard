@@ -5,10 +5,10 @@ function onLine(line) {
     try {
         let data = JSON.parse(line);
         console.log("Received JSON: ",data);
-        //update view
+        //update view, defined in another file
         updateView(data);
     } catch(e) {
-        console.log("Received: ",line);
+        console.warn("Unable to parse: ",line);
     }
 }
 
@@ -17,30 +17,50 @@ function onLine(line) {
 function connectDevice() {
     UART.connect(function(c) {
         if (!c) {
-            alert("Couldn't connect!");
+            onError();
             return;
         }
         connection = c;
         let buf = "";
+        onConnected();
+
         connection.on("data", function(d) {
-        //handle one "line" of data at a time
-        buf += d;
-        let i = buf.indexOf("\n");
-        while (i>=0) {
-            onLine(buf.substring(0,i));
-            buf = buf.substring(i+1);
-            i = buf.indexOf("\n");
-        }
+            //handle one "line" of data at a time
+            buf += d;
+            let i = buf.indexOf("\n");
+            while (i>=0) {
+                onLine(buf.substring(0,i));
+                buf = buf.substring(i+1);
+                i = buf.indexOf("\n");
+            }
+        });
+
+        connection.on("close", function() {
+            onDisconnected();
         });
     });
 }
 
 function start(){
     if(connection){
-        UART.write("startSending()");
+        UART.write("startSending()\n");
     }
 }
 
-function updateView(data){
-    document.getElementById("data").innerHTML = JSON.stringify(data);
+function stop(){
+    if(connection){
+        UART.write("stopSending()\n");
+    }
+}
+
+function selectSensors(sensors){
+    if(connection){
+        UART.write("setup("+JSON.stringify(sensors)+")\n");
+    }
+}
+
+function selectIntervalTime(t){
+    if(connection){
+        UART.write("stopSending("+t+")\n");
+    }
 }
