@@ -14,6 +14,8 @@ function updateView(data){
     document.getElementById("data").innerHTML = JSON.stringify(data);
     let time = new Date(Math.floor(data.time)).toTimeString().split(' ')[0] + ":" + x.getMilliseconds()
     let light = data.light*100;
+    console.log(time)
+    console.log(light);
     Plotly.extendTraces('lightPlot', {y: [[light]], x: [[time]]}, [0])
     let mag = data.mag
     Plotly.extendTraces('magPlot', {y: [[mag.x],[mag.y],[mag.z]], x:[[time],[time],[time]]}, [0,1,2])
