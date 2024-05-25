@@ -11,15 +11,31 @@ function onError(msg){
 }
 
 function updateView(data){
+    if(data.sensors){
+        updateSensors(data.sensors)
+    } else {
+        updateGraphs(data)
+    }
+}
+
+function updateSensors(sensors){
+    for(i in sensors){
+        document.querySelector("input[name='"+i+"']").value = sensors[i];
+    }
+}
+
+function updateGraphs(){
     document.getElementById("data").innerHTML = JSON.stringify(data);
     let date = new Date(Math.floor(data.time))
     let time = date.toTimeString().split(' ')[0] + ":" + date.getMilliseconds()
-    let light = data.light*100;
-    console.log(time)
-    console.log(light);
-    Plotly.extendTraces('lightPlot', {y: [[light]], x: [[time]]}, [0])
-    let mag = data.mag
-    Plotly.extendTraces('magPlot', {y: [[mag.x],[mag.y],[mag.z]], x:[[time],[time],[time]]}, [0,1,2])
+    if(data.light){
+        let light = data.light*100;
+        Plotly.extendTraces('lightPlot', {y: [[light]], x: [[time]]}, [0])
+    }
+    if(data.mag){
+        let mag = data.mag
+        Plotly.extendTraces('magPlot', {y: [[mag.x],[mag.y],[mag.z]], x:[[time],[time],[time]]}, [0,1,2])
+    }
 }
 
 let form = document.getElementById("settings");
@@ -50,20 +66,23 @@ Plotly.newPlot('magPlot', [{
     y: [],
     mode: 'lines+markers', 
     marker: {color: 'red', size: 8},
-    line: {width: 4}
+    line: {width: 4},
+    name: "x"
 },
 {
     x: [],
     y: [],
     mode: 'lines+markers', 
     marker: {color: 'blue', size: 8},
-    line: {width: 4}
+    line: {width: 4},
+    name: "y"
 },
 {
     x: [],
     y: [],
     mode: 'lines+markers', 
     marker: {color: 'green', size: 8},
-    line: {width: 4}
+    line: {width: 4},
+    name: "z"
 }]);
   

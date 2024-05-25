@@ -38,6 +38,8 @@ function connectDevice() {
             }
         });
 
+        getSensors();
+
         connection.on("close", function() {
             onDisconnected();
         });
@@ -71,6 +73,14 @@ function sendSensors(sensors){
 function sendIntervalValue(t){
     if(connection){
         connection.write("changeIntervalTime("+t+")\n");
+    } else {
+        onError("Not connected.")
+    }
+}
+
+function getSensors(){
+    if(connection){
+        connection.write("getSensors()\n");
     } else {
         onError("Not connected.")
     }
