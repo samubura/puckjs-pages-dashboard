@@ -2,14 +2,17 @@ let connection = undefined;
 
 // Called when we get a line of data 
 function onLine(line) {
-    try {
-        let data = JSON.parse(line);
+    let data = JSON.parse(line);
         console.log("Received JSON: ",data);
         //update view, defined in another file
         updateView(data);
+    /*
+    try {
+        
     } catch(e) {
         console.warn("Unable to parse: ",line);
     }
+    */
 }
 
 
