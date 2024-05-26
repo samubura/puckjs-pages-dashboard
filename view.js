@@ -29,16 +29,128 @@ function updateGraphs(data){
     let date = new Date(Math.floor(data.time))
     let time = date.toTimeString().split(' ')[0] + ":" + date.getMilliseconds()
     if(data.light){
+        if(!lightGraph){
+            createLightGraph();
+        }
         let light = data.light*100;
         Plotly.extendTraces('lightPlot', {y: [[light]], x: [[time]]}, [0])
     }
     if(data.mag){
+        if(!magGraph){
+            createLightGraph();
+        }
         let mag = data.mag
         Plotly.extendTraces('magPlot', {y: [[mag.x],[mag.y],[mag.z]], x:[[time],[time],[time]]}, [0,1,2])
     }
+    if(data.temp){
+        if(!tempGraph){
+            createTempgraph();
+        }
+        let temp = data.temp;
+        Plotly.extendTraces('tempPlot', {y: [[temp]], x: [[time]]}, [0])
+    }
+    if(data.accel){
+        if(!accelGraph){
+            createTempgraph();
+        }
+        let accel = data.accel.acc;
+        Plotly.extendTraces('magPlot', {y: [[accel.x],[accel.y],[accel.z]], x:[[time],[time],[time]]}, [0,1,2])
+    }
 }
 
-let form = document.getElementById("settings");
+function createLightGraph(){
+    lightGraph = document.createElement('div');
+    lightGraph.setAttribute("id", "lightPlot");
+    document.getElementById("data-container").append(lightGraph);
+
+    Plotly.newPlot('lightPlot', [{
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'yellow', size: 8},
+        line: {width: 4}
+    }]);
+}
+
+function createAccelGraph(){
+    accelGraph = document.createElement('div');
+    accelGraph.setAttribute("id", "accelPlot");
+    document.getElementById("data-container").append(accelGraph);
+    Plotly.newPlot('accelPlot', [{
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'red', size: 8},
+        line: {width: 4},
+        name: "x"
+    },
+    {
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'blue', size: 8},
+        line: {width: 4},
+        name: "y"
+    },
+    {
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'green', size: 8},
+        line: {width: 4},
+        name: "z"
+    }]);
+}
+
+function createMagGraph(){
+    magGraph = document.createElement('div');
+    magGraph.setAttribute("id", "magPlot");
+    document.getElementById("data-container").append(magGraph);
+
+    Plotly.newPlot('magPlot', [{
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'red', size: 8},
+        line: {width: 4},
+        name: "x"
+    },
+    {
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'blue', size: 8},
+        line: {width: 4},
+        name: "y"
+    },
+    {
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'green', size: 8},
+        line: {width: 4},
+        name: "z"
+    }]);
+}
+
+function createTempGraph(){
+    tempGraph = document.createElement('div');
+    tempGraph.setAttribute("id", "tempPlot");
+    document.getElementById("data-container").append(tempGraph);
+    
+    Plotly.newPlot('tempPlot', [{
+        x: [],
+        y: [],
+        mode: 'lines+markers', 
+        marker: {color: 'orange', size: 8},
+        line: {width: 4}
+    }]);
+}
+
+
+let lightGraph, tempGraph, accelGraph, magGraph = undefined;
+
+let form = document.getElementById("settingsform");
 let timeButton = document.getElementById("timeBtn");
 let timeValue = document.getElementById("time");
 
@@ -53,36 +165,5 @@ timeButton.addEventListener('click', () =>{
     sendIntervalValue(parseInt(timeValue.value));
 });
 
-Plotly.newPlot('lightPlot', [{
-    x: [],
-    y: [],
-    mode: 'lines+markers', 
-    marker: {color: 'yellow', size: 8},
-    line: {width: 4}
-}]);
 
-Plotly.newPlot('magPlot', [{
-    x: [],
-    y: [],
-    mode: 'lines+markers', 
-    marker: {color: 'red', size: 8},
-    line: {width: 4},
-    name: "x"
-},
-{
-    x: [],
-    y: [],
-    mode: 'lines+markers', 
-    marker: {color: 'blue', size: 8},
-    line: {width: 4},
-    name: "y"
-},
-{
-    x: [],
-    y: [],
-    mode: 'lines+markers', 
-    marker: {color: 'green', size: 8},
-    line: {width: 4},
-    name: "z"
-}]);
   
