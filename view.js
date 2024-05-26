@@ -37,7 +37,7 @@ function updateGraphs(data){
     }
     if(data.mag){
         if(!magGraph){
-            createLightGraph();
+            createMagGraph();
         }
         let mag = data.mag
         Plotly.extendTraces('magPlot', {y: [[mag.x],[mag.y],[mag.z]], x:[[time],[time],[time]]}, [0,1,2])
