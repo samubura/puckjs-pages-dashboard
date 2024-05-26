@@ -44,14 +44,14 @@ function updateGraphs(data){
     }
     if(data.temp){
         if(!tempGraph){
-            createTempgraph();
+            createTempGraph();
         }
         let temp = data.temp;
         Plotly.extendTraces('tempPlot', {y: [[temp]], x: [[time]]}, [0])
     }
     if(data.accel){
         if(!accelGraph){
-            createTempgraph();
+            createAccelGraph();
         }
         let accel = data.accel.acc;
         Plotly.extendTraces('magPlot', {y: [[accel.x],[accel.y],[accel.z]], x:[[time],[time],[time]]}, [0,1,2])
