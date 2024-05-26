@@ -54,7 +54,7 @@ function updateGraphs(data){
             createAccelGraph();
         }
         let accel = data.accel.acc;
-        Plotly.extendTraces('magPlot', {y: [[accel.x],[accel.y],[accel.z]], x:[[time],[time],[time]]}, [0,1,2])
+        Plotly.extendTraces('accelPlot', {y: [[accel.x],[accel.y],[accel.z]], x:[[time],[time],[time]]}, [0,1,2])
     }
 }
 
