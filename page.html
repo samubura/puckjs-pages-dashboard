@@ -1,38 +1,58 @@
 <html>
  <head>
+  <title>Puck.js Dashboard</title>
+  <link rel="stylesheet", href="style.css">
  </head>
  <body>
   <script src="https://www.espruino.com/js/uart.js"></script>
   <script src="https://cdn.plot.ly/plotly-2.32.0.min.js" charset="utf-8"></script>
   <script src="code.js"></script> 
   
-  <button onclick="connectDevice();">Connect</button>
-  <button onclick="start();">Start</button>
-  <button onclick="stop();">Stop</button>
+  <header>
+    <h1>Puck.js Dashboard</h1>
+  </header>
 
-  
-  
-  <div>
-    <input id="time" type="number" name="intervalTime"></input>
-    <button id="timeBtn">Update Time</button>
+  <div id="button-menu">
+    <button onclick="connectDevice();">Connect</button>
+    <button onclick="start();">Start</button>
+    <button onclick="stop();">Stop</button>
   </div>
 
-  <form id="settings">
-    <input type="checkbox" name="mag" value="true">Magnetometer</input>
-    <input type="checkbox" name="accel" value="true">Accelerometer</input>
-    <input type="checkbox" name="temp" value="true">Temperature</input>
-    <input type="checkbox" name="light" value="true">Light</input>
-    <button type="submit">Send!</button>
-  </form>
-  
 
-  <p id="data">No data yet.</p>
+  <div id="settings">
+    <h2> Time setting </h2>
+    <input id="time" type="number" name="intervalTime"></input>
+    <button id="timeBtn">Update Time</button>
 
-  <div id="magPlot"></div>
-  <div id="accPlot"></div>
-  <div id="tempPlot"></div>
-  <div id="lightPlot"></div>
+    <form>
+    <h2> Sensor settings </h2>
+      <label class="container">Magnetometer
+        <input type="checkbox" name="mag" value="true">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Accelerometer
+        <input type="checkbox" name="accel" value="true">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Temperature
+        <input type="checkbox" name="temp" value="true">
+        <span class="checkmark"></span>
+      </label>
+      <label class="container">Light
+        <input type="checkbox" name="light" value="true">
+        <span class="checkmark"></span>
+      </label>
+      <button type="submit">Send!</button>
+    </form>
+  </div>
 
+  <div id="data-container">
+    <p id="data">No data yet.</p>
+    <div id="magPlot"></div>
+    <div id="accPlot"></div>
+    <div id="tempPlot"></div>
+    <div id="lightPlot"></div>
+  </div>
   <script src="view.js"></script>
  </body>
 </html>
