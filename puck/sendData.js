@@ -68,5 +68,9 @@ function stopSending() {
   }
 }
 
+function getSensors(){
+  Bluetooth.println(JSON.stringify({sensors}));
+}
+
 NRF.on('disconnect', () => stopSending());
 
